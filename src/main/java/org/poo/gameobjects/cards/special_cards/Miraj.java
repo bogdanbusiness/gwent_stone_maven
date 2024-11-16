@@ -33,7 +33,7 @@ public class Miraj extends GenericCard {
             return null;
         }
 
-        GenericCard enemy = cards.get(0);
+        GenericCard enemy = cards.getFirst();
         int enenmyHP = enemy.getHealth();
         int selfHP = super.getHealth();
 

@@ -28,7 +28,7 @@ public class TheRipper extends GenericCard {
             return null;
         }
 
-        GenericCard enemy = cards.get(0);
+        GenericCard enemy = cards.getFirst();
         if (enemy.getAttackDamage() < 2) {
             enemy.setAttackDamage(0);
             return null;

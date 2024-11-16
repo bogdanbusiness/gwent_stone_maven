@@ -53,7 +53,7 @@ public class GameField {
      * @param playerTurn The current active player
      * @return GenericHero instance with the hero requested
      */
-    public GenericHero getPlayerHero(int playerTurn) {
+    public GenericHero getPlayerHero(final int playerTurn) {
         if (playerTurn == 1) {
             return player1Hero;
         } else {
@@ -66,7 +66,7 @@ public class GameField {
      * @param playerTurn The current active player
      * @return GenericHero instance with the hero requested
      */
-    public GenericHero getOppositePlayerHero(int playerTurn) {
+    public GenericHero getOppositePlayerHero(final int playerTurn) {
         if (playerTurn == 1) {
             return player2Hero;
         } else {

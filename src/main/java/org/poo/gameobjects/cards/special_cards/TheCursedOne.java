@@ -28,7 +28,7 @@ public class TheCursedOne extends GenericCard {
             return null;
         }
 
-        GenericCard enemy = cards.get(0);
+        GenericCard enemy = cards.getFirst();
         int enemyHP = enemy.getHealth();
         enemy.setHealth(enemy.getAttackDamage());
         enemy.setAttackDamage(enemyHP);

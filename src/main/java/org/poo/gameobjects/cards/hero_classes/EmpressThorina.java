@@ -23,7 +23,7 @@ public class EmpressThorina extends GenericHero {
         }
 
         // Find the card with the most health
-        GenericCard enemyMostHP = cards.get(0);
+        GenericCard enemyMostHP = cards.getFirst();
         for (GenericCard enemy : cards) {
             if (enemyMostHP.getHealth() < enemy.getHealth()) {
                 enemyMostHP = enemy;

@@ -33,7 +33,7 @@ public class Disciple extends GenericCard {
             return null;
         }
 
-        GenericCard ally = cards.get(0);
+        GenericCard ally = cards.getFirst();
         ally.setHealth(ally.getHealth() + GameConstants.DISCIPLE_HEAL);
         super.setHasAttacked(true);
         return null;

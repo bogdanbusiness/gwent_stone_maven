@@ -141,6 +141,11 @@ public class GenericCard {
         return 0;
     }
 
+    /**
+     * Returns if 2 instances are the same
+     * @param obj The object that needs to be compared
+     * @return Returns boolean
+     */
     @Override
     public final boolean equals(final Object obj) {
         if (obj instanceof GenericCard genericCard) {
