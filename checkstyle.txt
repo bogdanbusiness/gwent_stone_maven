@@ -1,14 +1,5 @@
 Starting audit...
-[ERROR] C:\Users\Bogdan\Desktop\gwent_port\oop-asignments\teme\GwentStone Light - Maven\.\src\gameobjects\cards\GenericCard.java:144:5: Definition of 'equals()' without corresponding definition of 'hashCode()'. [EqualsHashCode]
-[ERROR] C:\Users\Bogdan\Desktop\gwent_port\oop-asignments\teme\GwentStone Light - Maven\.\src\gameobjects\GameField.java:56:38: Parameter playerTurn should be final. [FinalParameters]
-[ERROR] C:\Users\Bogdan\Desktop\gwent_port\oop-asignments\teme\GwentStone Light - Maven\.\src\gameobjects\GameField.java:69:46: Parameter playerTurn should be final. [FinalParameters]
-[ERROR] C:\Users\Bogdan\Desktop\gwent_port\oop-asignments\teme\GwentStone Light - Maven\.\src\main\java\org\poo\gameobjects\cards\card_classes\Berserker.java:1: File does not end with a newline. [NewlineAtEndOfFile]
-[ERROR] C:\Users\Bogdan\Desktop\gwent_port\oop-asignments\teme\GwentStone Light - Maven\.\src\main\java\org\poo\gameobjects\cards\card_classes\Goliath.java:1: File does not end with a newline. [NewlineAtEndOfFile]
-[ERROR] C:\Users\Bogdan\Desktop\gwent_port\oop-asignments\teme\GwentStone Light - Maven\.\src\main\java\org\poo\gameobjects\cards\card_classes\Warden.java:1: File does not end with a newline. [NewlineAtEndOfFile]
-[ERROR] C:\Users\Bogdan\Desktop\gwent_port\oop-asignments\teme\GwentStone Light - Maven\.\src\main\java\org\poo\gameobjects\cards\GenericCard.java:144:5: Definition of 'equals()' without corresponding definition of 'hashCode()'. [EqualsHashCode]
-[ERROR] C:\Users\Bogdan\Desktop\gwent_port\oop-asignments\teme\GwentStone Light - Maven\.\src\main\java\org\poo\gameobjects\GameField.java:1: File does not end with a newline. [NewlineAtEndOfFile]
-[ERROR] C:\Users\Bogdan\Desktop\gwent_port\oop-asignments\teme\GwentStone Light - Maven\.\src\main\java\org\poo\gameobjects\GameField.java:56:38: Parameter playerTurn should be final. [FinalParameters]
-[ERROR] C:\Users\Bogdan\Desktop\gwent_port\oop-asignments\teme\GwentStone Light - Maven\.\src\main\java\org\poo\gameobjects\GameField.java:69:46: Parameter playerTurn should be final. [FinalParameters]
+[ERROR] C:\Users\Bogdan\Desktop\gwent_port\oop-asignments\teme\GwentStone Light - Maven\.\src\main\java\org\poo\gameobjects\cards\GenericCard.java:149:5: Definition of 'equals()' without corresponding definition of 'hashCode()'. [EqualsHashCode]
 [ERROR] C:\Users\Bogdan\Desktop\gwent_port\oop-asignments\teme\GwentStone Light - Maven\.\src\main\java\org\poo\main\MatchUp.java:143: Line is longer than 100 characters (found 121). [LineLength]
 [ERROR] C:\Users\Bogdan\Desktop\gwent_port\oop-asignments\teme\GwentStone Light - Maven\.\src\main\java\org\poo\main\MatchUp.java:361:5: Method playGame length is 179 lines (max allowed is 150). [MethodLength]
 [ERROR] C:\Users\Bogdan\Desktop\gwent_port\oop-asignments\teme\GwentStone Light - Maven\.\src\main\java\org\poo\main\MatchUp.java:389: Line is longer than 100 characters (found 125). [LineLength]
@@ -21,4 +12,4 @@ Starting audit...
 [ERROR] C:\Users\Bogdan\Desktop\gwent_port\oop-asignments\teme\GwentStone Light - Maven\.\src\main\java\org\poo\main\MatchUp.java:482: Line is longer than 100 characters (found 120). [LineLength]
 [ERROR] C:\Users\Bogdan\Desktop\gwent_port\oop-asignments\teme\GwentStone Light - Maven\.\src\main\java\org\poo\utils\GameConstants.java:3:1: Utility classes should not have a public or default constructor. [HideUtilityClassConstructor]
 Audit done.
-Checkstyle ends with 21 errors.
+Checkstyle ends with 12 errors.
