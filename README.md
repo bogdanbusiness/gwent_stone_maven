@@ -47,12 +47,14 @@ Heroes have designated starting spots on the board.
   - [Debug Interactions](#debug-interactions)
 - [Documentation](#documentation)
   - [Bigger Picture](#bigger-picture)
-  - [Data Structures](#data-structures)
-    - [Doubly Linked Lists](#doubly-linked-list)
-    - [Queue](#queue)
-    - [Graph](#graph)
-    - [Tree](#tree)
-  - [Files](#files)
+  - [Logic and design](#logic-and-design)
+  - [Important Classes](#important-classes)
+    - [MatchUp Class](#matchup-class)
+    - [GameBoard Class](#gameboard-class)
+    - [Player Class](#player-class)
+    - [Deck Class](#deck-class)
+    - [GenericCard Class](#genericcard-class)
+    - [GenericHero Class](#generichero-class)
 
 ## Interactions
 
@@ -73,111 +75,108 @@ Heroes have designated starting spots on the board.
 
 ### Debug interactions
 
-**getPlayerDeck** Displays the current deck of a player.
-**getPlayerHero** Displays the hero of a player.
-**getPlayerMana** Displays the current amount of mana a player has.
-**getPlayerTurn** Returns the turn of the current active player.
+- **getPlayerDeck** Displays the current deck of a player.
+- **getPlayerHero** Displays the hero of a player.
+- **getPlayerMana** Displays the current amount of mana a player has.
+- **getPlayerTurn** Returns the turn of the current active player.
 
-**getCardAtPosition**     Returns the card at the specified position.
-**getCardsOnTable**       Displays all the cards on the table
-**getFrozenCardsOnTable** Displays all the frozen cards on the table
+- **getCardAtPosition**     Returns the card at the specified position.
+- **getCardsOnTable**       Displays all the cards on the table
+- **getFrozenCardsOnTable** Displays all the frozen cards on the table
 
-**breakpoint** Internal debug command where a breakpoint can be placed while using a debugger.
+- **breakpoint** Internal debug command where a breakpoint can be placed while using a debugger.
 
 ## Documentation
 
 ### Bigger picture
 
-The program relies rather heavily on generic functions and functional
-programming to achive its goals, since a lot of the tasks can be broken
-down into similar enough functions.
+The design of the program is dependent on its ability to read a JSON file,
+process the logic of the games and the format that output into another JSON file.
+The Main class manages all of that.
 
-The connections between users are modeled using a list graph.
-The list graph is composed of a vector of DLL lists. Each element in the vector
-is a user and each element in the DLL list is a friend of that user.
+The action method of the Main function manages both the passing of the input to
+the MatchUp class, which implements the logic of the program and the outputting
+of the results into another JSON file.
 
-The posts are stored in a "database" which is a cronological vector.
-Each (re)post is a structure that contains among others a structure of likes
-and a tree of reposts.
+### Logic and design
 
-The likes structure contains the number of likes a (re)post has and a vector
-of user_ids of the people that have liked that post.
+Since any games played in this program is played between the same two players,
+on the same game board and with the same possible decks for the players,
+the program implements the singleton class MatchUp.
 
-The tree of reposts is the representation for which reposts are reposts of
-other (re)posts. The root of this tree is the original post and contains no
-data (important for how functions are implemented inside the program, where
-functions usually treat the root differently from other nodes).
-Every other node contains the structure to the repost.
-Reposts don't have a tree of reposts.
+Another important aspect of the design regards the players. Before any game
+starts, the players each get different and unique decks that must not be modified
+later in the program. As such, they are stored into an array where each deck will
+be copied on demand.
 
-### Data Structures
+At the same time, each player has both a deck, copied from the possible decks and
+randomised before the start of each game, and a hand which represents the cards
+the player can actually place on the game board. In the program, they are implemented
+using the same class, yet logically they function differently. The deck is can
+be thought of as a stack, and the hand can be thought of as an array.
 
-#### Doubly Linked List
+The last aspect that needs to be discussed is the implementation of the cards and
+heroes. Every card and hero is derived from the class GenericCard, which contains
+everything shared by all cards.
 
-Defined by 3 structs:
-1. Header struct
-2. Node struct
-3. Info struct
+From this class, 3 other types of classes emerge:
+- the normal card classes (Berserker, Goliath, etc.); 
+- the special cards, that have specific abilities tied to them (Disciple, Miraj, etc.);
+- GenericHero class, which contains all the common information of heroes and is later
+specialized for each different hero.
 
-1. Header struct is responsible for holding the pointer to the first node,
-   the size of the list and the size of the nodes.
+Each card class is initialized when it is first added into a deck, but it's stored as
+a GenericCard reference.
 
-2. Node struct is the node of the DLL and is generic, holding only the
-   pointers to the next and previous node along with a void pointer to data.
+Same deal for heroes, they are initialized into their respective classes when they are
+set of each player, but stored as a GenericHero reference.
 
-3. Info struct is the one responsible for holding the actual data.
-   In its current implementation it stores only an integer.
+### Important Classes
 
-#### Queue
+#### MatchUp Class
 
-The queue is implemented generically and is comprised of the following
-elements:
-1. A buffer which stores the elements in the queue.
-2. Size of the elements in the queue.
-3. Maximum size of the queue.
-4. Size of the queue.
-5. Read index.
-6. Write index.
-7. Data duplicator.
-8. Data destructor.
+Responsible for the correctly initializing the players and the game board before any game
+is played, for implementing the handling of the program commands, and formatting the
+outputs of said commands.
 
-Each of this elements shouldn't be accessed (unless absolutely necessary),
-since the functions already implemented should allow full control of the queue.
+Doesn't change between games, only resetting the relevant information in the Player
+and GameBoard classes.
 
-#### Graph
+Contains: GameBoard and two Players
 
-The graph we use is a generic list graph.
-It is implemented using a vector for every node that stores a DLL which
-represents all the connections that node has.
+#### GameBoard Class
 
-#### Tree
+Handles all the interactions between cards that are on the game board. Stores both the
+cards and references to the heroes of each player.
 
-The tree we use is a generic k-nary tree.
-Defined by 3 structs:
-1. Header struct
-2. Node struct
+Contains: two GenericHeroes
 
-1. Header struct is responsible for holding the pointer to root,
-   the size of the nodes and a destructor for the data in the nodes.
+#### Player Class
 
-2. Node struct is the node of the tree and is generic, holding the pointer
-   to data, a vector which stores pointers to the children of the node and
-   the occupied and allocated size of the children vector.
+Responsible for handling any task that regards the player in any way.
 
-### Files
+Contains: GenericHero, two Decks (one for the hand and one for the deck) and one Deck array
+for the available decks that are unchanging.
 
-1. <helpers.c/h> stores implementations to random helper functions, along
-   with some functional programming functions.
+#### Deck Class
 
-2. <data_structure.c/h> stores implementations to the data structures.
+Handles the actions performed by both the player hand and deck.
 
-3. <algorithms.c/h> stores the implementations of all the algorithms used.
-   They are dependent on the implementation of the data structures.
+#### GenericCard Class
 
-4. <friends.c/h> stores the user interactions.
+The class that stores all the common information of every card:
+- name;
+- description;
+- colors;
+- mana cost;
+- attack power;
+- health;
+- internal variables.
 
-5. <posts.c/h> stores the post interactions.
+Every card and hero is derived from this class.
 
-6. <feed.c/h> stores the platform interactions.
+#### GenericHero Class
+
+The class that stores all the common information of every hero.
 
 #### Copyright: 2024 - Gheorghe Andrei-Bogdan
